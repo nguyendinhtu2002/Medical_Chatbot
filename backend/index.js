@@ -15,6 +15,7 @@ app.use(express.json());
 app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/message", MessageRouter);
 app.use("/api/v1/group", GroupRouter);
+app.use("/api/v1/openai", require("./routers/openRouter.js"));
 
 app.listen(process.env.PORT || 5000, () =>
   console.log(`Server started on ${process.env.PORT}`)
