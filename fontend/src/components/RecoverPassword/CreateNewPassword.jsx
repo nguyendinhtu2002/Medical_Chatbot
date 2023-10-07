@@ -1,5 +1,5 @@
 import React from 'react'
-import logo_blur from "../../assets/img/logo_blur.png"
+import logo_blur from "../../dist/assets/img/logo_blur.png"
 function CreateNewPassword() {
     return(
         <>

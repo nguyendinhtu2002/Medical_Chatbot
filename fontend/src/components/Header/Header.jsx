@@ -1,7 +1,7 @@
 import React from 'react'
-import logo_blur from "../../assets/img/logo_blur.png"
-import icon_user from "../../assets/img/icon_user.svg"
-import icon_logout from "../../assets/img/icon_logout.svg"
+import logo_blur from "../../dist/assets/img/logo_blur.png"
+import icon_user from "../../dist/assets/img/icon_user.svg"
+import icon_logout from "../../dist/assets/img/icon_logout.svg"
 
 function Header() {
     return(

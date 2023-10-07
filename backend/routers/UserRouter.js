@@ -19,7 +19,6 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/refresh_token", RefreshTokenController);
 router.post("/updateProfile/:id", protect, updateAccount);
-router.post("/updateProfile/address/:id", protect, updateAddress);
 router.get("/:_id", protect, getUserById);
 router.post("/login/admin", loginAdmin);
 router.get("/", protect, admin, getAll);
