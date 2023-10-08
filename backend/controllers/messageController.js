@@ -1,11 +1,9 @@
 import modelMessage from "../models/MessageModel.js";
 import Joi from "joi";
-import randomstring from "randomstring";
 import User from "../models/UsersModel.js";
 import OpenAI from "openai";
-import axios from "axios";
 import dotenv from "dotenv";
-import Client from "poe-chat-api";
+import Group from "../models/GroupMessage.js";
 
 dotenv.config();
 
@@ -52,7 +50,8 @@ const createMessage = async (req, res, next) => {
     if (data) {
       const { role, content } = data;
 
-      const contentNew = "Câu hỏi này thuộc lĩnh vực nào của y tế" + contentSend;
+      const contentNew =
+        "Câu hỏi này thuộc lĩnh vực nào của y tế" + contentSend;
       const dataNew = await message(contentNew);
 
       if (dataNew) {
@@ -63,13 +62,16 @@ const createMessage = async (req, res, next) => {
           contentRep: content,
           contentRepNew: contentRepNew,
         });
-        
+
+        const groupModel = await Group.findOne({ _id: groupMessage });
+        groupModel.countMessage += 1;
+        await groupModel.save();
+
         return res.status(201).json({
           status: "success",
           message: messages,
         });
       }
-
     }
   } catch (error) {
     next(error);

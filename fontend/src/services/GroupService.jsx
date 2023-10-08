@@ -6,4 +6,9 @@ export const createThread = async (data) => {
     return res.data
 }
 
+export const getThread = async (id) => {
+    const res = await axios.get(`${API}/api/v1/group/${id}`)
+    return res.data
+}
+
 //

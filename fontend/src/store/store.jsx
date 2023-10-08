@@ -1,6 +1,8 @@
-import { combineReducers,configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import groupReducers from "../features/GroupSlice";
+import userReducers from "../features/UserSlice";
+import messageReducers from "../features/MessageSlice";
 
-import userReducers from '../features/UserSlice'
 import {
   persistStore,
   persistReducer,
@@ -10,20 +12,21 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   version: 1,
   storage,
-}
+};
 const rootReducer = combineReducers({
-    user: userReducers,
-})
+  user: userReducers,
+  groups: groupReducers,
+  messages: messageReducers,
+});
 
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -33,6 +36,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-})
+});
 
-export let persistor = persistStore(store)
+export let persistor = persistStore(store);

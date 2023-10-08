@@ -40,6 +40,7 @@ const createGroup = async (req, res, next) => {
       return res.status(201).json({
         error: false,
         message: "Group registered successfully",
+        data: group,
       });
     } else {
       return res.error(400).json({
@@ -53,8 +54,8 @@ const createGroup = async (req, res, next) => {
 };
 const getGroupByUser = async (req, res, next) => {
   try {
-    const { user_id } = req.body;
-    const userCheck = await User.findOne({ _id: user_id });
+    const { id } = req.params;
+    const userCheck = await User.findOne({ _id: id });
     const arr = [];
     if (!userCheck) {
       return res.status(500).json({
@@ -63,7 +64,7 @@ const getGroupByUser = async (req, res, next) => {
       });
     }
 
-    const groups = await modelGroupMessage.find({ user: user_id });
+    const groups = await modelGroupMessage.find({ user: id });
     if (groups) {
       return res.json({ groups });
     }
@@ -72,7 +73,4 @@ const getGroupByUser = async (req, res, next) => {
     next(error);
   }
 };
-export {
-  createGroup,
-  getGroupByUser,
-};
+export { createGroup, getGroupByUser };

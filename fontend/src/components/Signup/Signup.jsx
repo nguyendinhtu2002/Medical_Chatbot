@@ -36,7 +36,6 @@ function Signup() {
     const submitHandler = async (e) => {
         e.preventDefault();
         if (
-            name === "" ||
             email === "" ||
             password === "" ||
             confirmPassword === ""
@@ -62,7 +61,7 @@ function Signup() {
         if (!error && isSuccess) {
             if (!toast.isActive(toastId.current)) {
                 toastId.current = toast.success("Thành công", Toastobjects);
-                history("/login");
+                history("/signin");
             }
         } else if (error) {
             if (!toast.isActive(toastId.current)) {
