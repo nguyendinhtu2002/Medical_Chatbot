@@ -886,6 +886,11 @@ ul.row-sm {
   background-color: #fff;
   border-color: rgba(108, 117, 125, 0.25);
 }
+.ghLWkf div:first-child{
+  white-space: initial !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .btn-light i {
   color: #adb5bd;
 }

@@ -6,7 +6,7 @@ import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/LoadingError";
 import { useMutationHooks } from "../../hooks/useMutationHooks";
 import { useQuery } from "react-query";
-import * as VoucherService from "../../Services/VoucherService";
+import * as MessageService from "../../Services/MessageService";
 import { toast } from "react-toastify";
 
 const ToastObjects = {
@@ -16,10 +16,10 @@ const ToastObjects = {
     autoClose: 2000,
 };
 
-const EditVoucher = (props) => {
+const EditProfessional = (props) => {
     const { id } = props;
-    const [discount, setDiscount] = useState("");
-    const [expiryDays,setExpiryDays] = useState("");
+    const [message, setMessage] = useState("");
+    const [differentMessage, setDifferentMessage] = useState("");
 
     const dispatch = useDispatch();
 
@@ -35,15 +35,15 @@ const EditVoucher = (props) => {
     };
     const handleGetDetailsVoucher = async () => {
         const access_token = JSON.parse(localStorage.getItem("access_token"));
-        const res = await VoucherService.getDetilsPay(id, access_token);
-        setDiscount(res.discount);
-        setExpiryDays(res.expiryDays);
+        const res = await MessageService.getDetilsPay(id, access_token);
+        setMessage(res.message);
+        setDifferentMessage(res.differentMessage);
         // setStatus(res.status);
         return res;
     };
     const mutation = useMutationHooks((data) => {
         const { id, access_token, ...rests } = data;
-        VoucherService.updatePay(id, rests, access_token);
+        MessageService.updatePay(id, rests, access_token);
     });
     const { data, error, isLoading, isError, isSuccess } = mutation;
     const handleUpdate = (e) => {
@@ -52,8 +52,8 @@ const EditVoucher = (props) => {
 
         mutation.mutate({
             id: id,
-            discount,
-            expiryDays,
+            message,
+            differentMessage,
             access_token,
         });
 
@@ -88,13 +88,13 @@ const EditVoucher = (props) => {
             <section className="content-main" style={{ maxWidth: "1200px" }}>
                 <form onSubmit={handleUpdate}>
                     <div className="content-header">
-                        <Link to="/voucher" className="btn btn-danger text-white">
-                            Về trang danh sách khuyến mãi
+                        <Link to="/professional" className="btn btn-danger text-white">
+                            Go to professional
                         </Link>
-                        <h2 className="content-title">Update Voucher</h2>
+                        <h2 className="content-title">Edit Message</h2>
                         <div>
                             <button type="submit" className="btn btn-primary">
-                                Xác nhận sửa
+                                Edit now
                             </button>
                         </div>
                     </div>
@@ -115,15 +115,15 @@ const EditVoucher = (props) => {
                                     ) : (
                                         <>
                                             <div className="mb-4">
-                                                <label htmlFor="discount" className="form-label">Khuyến mãi</label>
+                                                <label htmlFor="discount" className="form-label">Message</label>
                                                 <input
                                                     type="text"
                                                     placeholder="Type here"
                                                     className="form-control"
                                                     id="discount"
                                                     required
-                                                    value={discount}
-                                                    onChange={(e) => setDiscount(e.target.value)}
+                                                    value={message}
+                                                    onChange={(e) => setMessage(e.target.value)}
                                                 />
                                             </div>
 
@@ -135,8 +135,8 @@ const EditVoucher = (props) => {
                                                     className="form-control"
                                                     id="expiryDays"
                                                     required
-                                                    value={expiryDays}
-                                                    onChange={(e) => setExpiryDays(e.target.value)}
+                                                    value={differentMessage}
+                                                    onChange={(e) => setDifferentMessage(e.target.value)}
                                                 />
                                             </div>
                                         </>
@@ -151,4 +151,4 @@ const EditVoucher = (props) => {
     );
 };
 
-export default EditVoucher;
+export default EditProfessional

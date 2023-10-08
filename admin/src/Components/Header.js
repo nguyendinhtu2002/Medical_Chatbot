@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 import { useDispatch } from "react-redux";
 import * as UserService from "../Services/UserService";
-import { resetPay } from "../features/Order/Order";
 import { resetUser } from "../features/userSlide/userSlide";
-import { restProductSingle } from "../features/productSlide/ProductSliceNew";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -33,10 +31,8 @@ const Header = () => {
     setTimeout(() => {
       window.location.reload();
     });
-    dispatch(resetPay());
     dispatch(resetUser());
-    dispatch(restProductSingle());
-   
+
   };
 
   return (

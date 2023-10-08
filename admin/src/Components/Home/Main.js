@@ -4,9 +4,7 @@ import LatestOrder from "./LasterOrder";
 import SaleStatistics from "./SalesStatistic";
 import ProductsStatistics from "./ProductsStatistics";
 import { useDispatch, useSelector } from "react-redux";
-import * as ProductService from "../../Services/ProductService";
 import { useQuery } from "react-query";
-import * as PayService from "../../Services/OrderSevice";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -14,20 +12,20 @@ const Main = () => {
   const [orders, setOrders] = useState([]);
   const [products, setProduct] = useState([]);
 
-  const hangldeGetAll = async () => {
-    setLoading(true);
-    const access_token = JSON.parse(localStorage.getItem("access_token"))
-    const res = await PayService.getPay(access_token);
-    const resProduct = await ProductService.getAll();
-    setOrders(res);
-    setProduct(resProduct)
-    setLoading(false)
-    
-    // dispatch(updatePay(res));
-  };
-  useEffect(() => {
-    hangldeGetAll();
-  }, []);
+  // const hangldeGetAll = async () => {
+  //   setLoading(true);
+  //   const access_token = JSON.parse(localStorage.getItem("access_token"))
+  //   const res = await PayService.getPay(access_token);
+  //   const resProduct = await ProductService.getAll();
+  //   setOrders(res);
+  //   setProduct(resProduct)
+  //   setLoading(false)
+  //
+  //   // dispatch(updatePay(res));
+  // };
+  // useEffect(() => {
+  //   hangldeGetAll();
+  // }, []);
   return (
     <>
       <section className="content-main">

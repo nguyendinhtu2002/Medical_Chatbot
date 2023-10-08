@@ -5,23 +5,11 @@ import LoginScreen from "./Screen/LoginScreen";
 import HomeScreen from "./Screen/HomeScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchAsyncProducts } from "./features/productSlide/productSlice";
-import ProductScreen from "./Screen/ProductScreen";
-import AddProduct from "./Screen/AddProductScreen";
-import EditProductMain from "./Components/Product/EditProduct";
-import EditProductScreen from "./Screen/EditProductSreen";
+
 import UserMain from "./Components/User/Usermain";
 import UserScreen from "./Screen/UserScreen";
 import EditUserScreen from "./Screen/EditUserScreen";
 import CategoryScreen from "./Screen/CategoryScreen";
-import AddCategory from "./Screen/AddCategorySreen";
-
-import PaymentScreen from "./Screen/PaymentScreen";
-
-import VoucherScreen from "./Screen/VoucherScreen";
-import EditVoucherScreen from "./Screen/EditVoucherScreen";
-import AddVoucherScreen from "./Screen/AddVoucherScreen";
-
 import MessageScreen from "./Screen/MessageScreen";
 import EditMessageScreen from "./Screen/EditMessageScreen";
 
@@ -30,9 +18,8 @@ import * as UserService from "./Services/UserService";
 import { updateUser } from "./features/userSlide/userSlide";
 import jwt_decode from "jwt-decode";
 import { isJsonString } from "./utils";
-import EditPaymentMain from "./Components/Payment/EditPayment";
-import EditPaymentScreen from "./Screen/EditPaymentScreen";
-import Professional from "./Components/Professional/Professional";
+import ProfessionalScreen from "./Screen/ProfessionalScreen";
+import EditProfessionalScreen from "./Screen/EditProfessionalScreen";
 
 function App() {
   const userLogin = useSelector((state) => state.user);
@@ -42,12 +29,6 @@ function App() {
   const { email } = userLogin;
   const pageNumber = 1;
 
-  useEffect(() => {
-    if (email !== "") {
-      dispatch(fetchAsyncProducts());
-      // hangldeGetAll()
-    }
-  }, [dispatch]);
   useEffect(() => {
     const { storageData, decoded } = handleDecoded();
     if (decoded?.id) {
@@ -94,23 +75,14 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/professional" element={<Professional />} />
-          <Route path="/products" element={<ProductScreen />} />
-          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/professional" element={<ProfessionalScreen />} />
+          <Route path="/professional/:id/edit" element={<EditProfessionalScreen />} />
           <Route path="/users" element={<UserScreen />} />
           <Route path="/category" element={<CategoryScreen />} />
-          <Route path="/addcategory" element={<AddCategory />} />
 
           <Route path="/users/:id/edit" element={<EditUserScreen />} />
 
-          <Route path="/product/:id/edit" element={<EditProductScreen />} />
 
-          <Route path="/payment" element={<PaymentScreen />} />
-          <Route path="/payment/:id/edit" element={<EditPaymentScreen />} />
-
-          <Route path="/voucher" element={<VoucherScreen />} />
-          <Route path="/voucher/:id/edit" element={<EditVoucherScreen />} />
-          <Route path="/voucher/create" element={<AddVoucherScreen />} />
 
           <Route path="/message" element={<MessageScreen />} />
           <Route path="/message/:id/edit" element={<EditMessageScreen />} />

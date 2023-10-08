@@ -34,16 +34,7 @@ const Sidebar = () => {
                 <span className="text">Thống kê</span>
               </NavLink>
             </li>
-            <li className="menu-item">
-              <NavLink
-                activeClassName="active"
-                className="menu-link"
-                to="/products"
-              >
-                <i className="icon fas fa-shopping-bag"></i>
-                <span className="text">Sản phẩm</span>
-              </NavLink>
-            </li>
+
             <li className="menu-item">
               <NavLink
                 activeClassName="active"
@@ -51,7 +42,7 @@ const Sidebar = () => {
                 to="/users"
               >
                 <i className="icon fas fa-user"></i>
-                <span className="text">Người dùng</span>
+                <span className="text">Users</span>
               </NavLink>
             </li>
             <li className="menu-item">
@@ -61,7 +52,7 @@ const Sidebar = () => {
                 to="/category"
               >
                 <i className="icon fas fa-shopping-bag"></i>
-                <span className="text">Danh mục</span>
+                <span className="text">Category</span>
               </NavLink>
             </li>
 
@@ -69,33 +60,24 @@ const Sidebar = () => {
               <NavLink
                   activeClassName="active"
                   className="menu-link "
-                  to="/payment"
+                  to="/professional"
               >
                 <i className="icon fas fa-shopping-bag"></i>
-                <span className="text">Thanh toán</span>
+                <span className="text">Professional</span>
               </NavLink>
             </li>
 
-            <li className="menu-item">
-              <NavLink
-                  activeClassName="active"
-                  className="menu-link "
-                  to="/voucher"
-              >
-                <i className="icon fas fa-ticket"></i>
-                <span className="text">Mã giảm giá</span>
-              </NavLink>
-            </li>
-            <li className="menu-item">
-              <NavLink
-                  activeClassName="active"
-                  className="menu-link "
-                  to="/message"
-              >
-                <i className="icon fas fa-phone"></i>
-                <span className="text">Bình luận</span>
-              </NavLink>
-            </li>
+
+            {/*<li className="menu-item">*/}
+            {/*  <NavLink*/}
+            {/*      activeClassName="active"*/}
+            {/*      className="menu-link "*/}
+            {/*      to="/message"*/}
+            {/*  >*/}
+            {/*    <i className="icon fas fa-phone"></i>*/}
+            {/*    <span className="text">Message</span>*/}
+            {/*  </NavLink>*/}
+            {/*</li>*/}
 
             {/* <li className="menu-item ">
               <NavLink

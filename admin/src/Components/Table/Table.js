@@ -11,12 +11,12 @@ function Table(props) {
   const [datas, setTempData] = useState(data);
   const [selectedOption, setSelectedOption] = useState(null);
   const location = useLocation();
-  const uniqueCategories = data.reduce((acc, product) => {
-    if (!acc.includes(product.category)) {
-      acc.push(product.category);
-    }
-    return acc;
-  }, []);
+  // const uniqueCategories = data.reduce((acc, product) => {
+  //   if (!acc.includes(product.category)) {
+  //     acc.push(product.category);
+  //   }
+  //   return acc;
+  // }, []);
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -77,9 +77,9 @@ function Table(props) {
                 {/* <option value="1"></option> */}
 
                 <option value="1">Choose category</option>
-                {uniqueCategories.map((item) => (
-                  <option value={item} className="text-capitalize">{item}</option>
-                ))}
+                {/*{uniqueCategories.map((item) => (*/}
+                {/*  <option value={item} className="text-capitalize">{item}</option>*/}
+                {/*))}*/}
               </select>
               <input
                 type="text"
