@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const groupMessageSchema = new mongoose.Schema({
     user: {
@@ -18,5 +18,5 @@ const groupMessageSchema = new mongoose.Schema({
   
   const GroupMessage = mongoose.model('GroupMessage', groupMessageSchema);
   
-  module.exports = GroupMessage;
+ export default GroupMessage;
   

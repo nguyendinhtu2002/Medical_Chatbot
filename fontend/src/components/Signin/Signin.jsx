@@ -27,7 +27,7 @@ function Signin() {
     };
 
     const userLogin = useSelector((state) => state.user)
-    const {id} = userLogin
+    const {access_token} = userLogin
 
     const mutation = useUserMutationHook((data) => UserService.loginUser(data))
     const {data, error, isLoading, isError, isSuccess} = mutation
@@ -61,6 +61,7 @@ function Signin() {
                 if (!toast.isActive(toastId.current)) {
                     toastId.current = toast.success("Thành công", Toastobjects);
                 }
+                history("/");
             }
 
             // dispatch(updateUser({ data }))
@@ -73,10 +74,10 @@ function Signin() {
             }
         }
 
-        if (email !== "") {
+        if (access_token !== "") {
             history("/");
         }
-    }, [isSuccess, history, email, error]);
+    }, [isSuccess, access_token, email, error]);
     return (
         <>
             <Toast/>

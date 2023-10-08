@@ -1,9 +1,9 @@
-const User = require("../models/UsersModel");
-const Joi = require("joi");
-const { generateToken, refreshToken } = require("../utils/generateToken");
-const jwt = require("jsonwebtoken");
-const randomstring = require("randomstring")
-const nodemailer = require("nodemailer")
+import User from "../models/UsersModel.js";
+import Joi from "joi";
+import { generateToken, refreshToken } from "../utils/generateToken.js";
+import jwt from "jsonwebtoken";
+import randomstring from "randomstring";
+import nodemailer from "nodemailer";
 
 const register = async (req, res, next) => {
   const schema = Joi.object({
@@ -14,12 +14,13 @@ const register = async (req, res, next) => {
         "string.email": "Email không hợp lệ",
         "any.required": "Email is required",
       }),
-      password: Joi.string()
-      .pattern(new RegExp('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'))
+    password: Joi.string()
+      .pattern(new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])"))
       .min(8)
       .required()
       .messages({
-        "string.pattern.base": "Password must contain letters, numbers, and a special character",
+        "string.pattern.base":
+          "Password must contain letters, numbers, and a special character",
         "any.required": "Password is required",
       }),
   });
@@ -30,7 +31,6 @@ const register = async (req, res, next) => {
     });
   }
   try {
-
     const { email, password } = req.body;
     const emailExists = await User.findOne({ email });
     if (emailExists) {
@@ -42,16 +42,16 @@ const register = async (req, res, next) => {
     });
 
     if (user) {
-        return res.status(201).json({
-          status: "success",
-          message: "User registered successfully",
-        });
-      } else {
-        return res.status(400).json({
-          status: "error",
-          message: "Invalid User Data",
-        });
-      }
+      return res.status(201).json({
+        status: "success",
+        message: "User registered successfully",
+      });
+    } else {
+      return res.status(400).json({
+        status: "error",
+        message: "Invalid User Data",
+      });
+    }
   } catch (error) {
     next(error);
   }
@@ -365,7 +365,7 @@ You must change password at next signin
     next(error);
   }
 };
-module.exports = {
+export {
   register,
   login,
   RefreshTokenController,
