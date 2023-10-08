@@ -18,9 +18,9 @@ Module Hệ thống ChatBot Y tế với Quản lý Vai trò Người dùng và 
 
 ## V1.2.00
 ### Các chức năng thêm phụ trợ
-- Chức năng xác thực tạm thời từ bot chat khác
-- Chức năng lọc câu hỏi về y tế
-- Chức năng lưu trữ dữ liệu để huấn luyện mô hình ngôn ngữ
+- Chức năng Xác thực tạm thời từ bot chat khác
+- Chức năng Lọc câu hỏi về y tế
+- Chức năng Lưu trữ dữ liệu để huấn luyện mô hình ngôn ngữ
 
 # Setup 
 
