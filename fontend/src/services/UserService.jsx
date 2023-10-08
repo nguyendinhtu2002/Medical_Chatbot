@@ -20,3 +20,9 @@ export const getDetailUser = async (id, access_token) => {
     return res.data
 }
 
+export const forgotPassword = async (data) => {
+    const res = await axios.post(`${API}api/v1/user/updatePassword`, data, {
+        withCredentials: true,
+    });
+    return res.data;
+};

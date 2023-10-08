@@ -9,6 +9,7 @@ import CreateNewPassword from "./components/RecoverPassword/CreateNewPassword";
 import Homepage from "./pages/HomePage/Homepage";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
+import PrivateRoutes from "./PrivateRoutes";
 
 function App() {
     return (
@@ -17,7 +18,9 @@ function App() {
                 <BrowserRouter>
                     {/*<Header></Header>*/}
                     <Routes>
-                        <Route path={'/'} element={<Homepage/>}></Route>
+                        <Route element={<PrivateRoutes/>}>
+                            <Route path={'/'} element={<Homepage/>}></Route>
+                        </Route>
                         <Route path={'/signin'} element={<Signin/>}></Route>
                         <Route path={'/signup'} element={<Signup/>}></Route>
                         <Route path={'/forgot-password'} element={<ForgotPassword/>}></Route>
