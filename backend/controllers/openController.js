@@ -1,6 +1,6 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
-const OpenAI = require('openai');
+import OpenAI from 'openai';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted

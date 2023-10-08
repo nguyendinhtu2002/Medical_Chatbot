@@ -1,25 +1,25 @@
-const modelMessage = require("../models/MessageModel");
-const Joi = require("joi");
-const randomstring = require("randomstring");
-const User = require("../models/UsersModel");
-const OpenAI = require('openai');
-const axios = require("axios");
-const dotenv = require("dotenv");
+import modelMessage from "../models/MessageModel.js";
+import Joi from "joi";
+import randomstring from "randomstring";
+import User from "../models/UsersModel.js";
+import OpenAI from "openai";
+import axios from "axios";
+import dotenv from "dotenv";
+import Client from "poe-chat-api";
+
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
+  apiKey: "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", // This is also the default, can be omitted
 });
 
 async function message(messages) {
-
   const chatCompletion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-    messages: [{ "role": "user", "content": messages }],
+    messages: [{ role: "user", content: messages }],
   });
   if (chatCompletion) {
-    return chatCompletion.choices[0].message
-
+    return chatCompletion.choices[0].message;
   }
 }
 const createMessage = async (req, res, next) => {
@@ -42,25 +42,34 @@ const createMessage = async (req, res, next) => {
   }
   try {
     const { sender, contentSend, groupMessage } = req.body;
-    // const senderExits = await User.findOne({ _id: sender });
-    // if (!senderExits) {
-    //   return res.status(400).json({ message: "Sender not found" });
-    // }
+    const senderExits = await User.findOne({ _id: sender });
+    if (!senderExits) {
+      return res.status(400).json({ message: "Sender not found" });
+    }
 
     const data = await message(contentSend);
 
     if (data) {
       const { role, content } = data;
 
-      const messages = await modelMessage.create({
-        ...req.body,
-        contentRep: content
-      });
+      const contentNew = "Câu hỏi này thuộc lĩnh vực nào của y tế" + contentSend;
+      const dataNew = await message(contentNew);
 
-      return res.status(201).json({
-        status: "success",
-        message: messages,
-      });
+      if (dataNew) {
+        const { role, content: contentRepNew } = dataNew;
+
+        const messages = await modelMessage.create({
+          ...req.body,
+          contentRep: content,
+          contentRepNew: contentRepNew,
+        });
+        
+        return res.status(201).json({
+          status: "success",
+          message: messages,
+        });
+      }
+
     }
   } catch (error) {
     next(error);
@@ -82,7 +91,4 @@ const getMessageToGroup = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = {
-  createMessage,
-  getMessageToGroup,
-};
+export { createMessage, getMessageToGroup };

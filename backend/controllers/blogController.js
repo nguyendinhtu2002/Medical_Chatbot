@@ -1,4 +1,4 @@
-const Blog = require("../models/Blog"); // Import mô hình "Blog"
+import Blog from "../models/Blog"; // Import mô hình "Blog"
 
 // Controller cho mô hình "Blog"
 const blogController = {
@@ -35,6 +35,7 @@ const blogController = {
       res.status(500).json({ error: "Lỗi máy chủ" });
     }
   },
+  
   updateBlog: async (req, res) => {
     try {
       const blogId = req.params.id;
@@ -69,4 +70,4 @@ const blogController = {
   },
 };
 
-module.exports = blogController;
+export { blogController };

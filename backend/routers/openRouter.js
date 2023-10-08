@@ -1,11 +1,11 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   summaryController,
   paragraphController,
   chatbotController,
   jsconverterController,
   scifiImageController,
-} = require("../controllers/openController");
+} from "../controllers/openController";
 
 const router = express.Router();
 
@@ -16,4 +16,4 @@ router.post("/chatbot", chatbotController);
 router.post("/js-converter", jsconverterController);
 router.post("/scifi-image", scifiImageController);
 
-module.exports = router;
+export default router;

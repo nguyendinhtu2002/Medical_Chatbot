@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/UsersModel");
+import jwt from "jsonwebtoken";
+import User from "../models/UsersModel";
 const protect = async (req, res, next) => {
   let token;
 
@@ -30,4 +30,4 @@ const admin = async (req, res, next) => {
     return res.status(401).json({ message: "Not authorized as an Admin" });
   }
 };
-module.exports = { protect, admin };
+export { protect, admin };

@@ -1,7 +1,7 @@
-const modelGroupMessage = require("../models/GroupMessage");
-const Joi = require("joi");
-const randomstring = require("randomstring");
-const User = require("../models/UsersModel");
+import modelGroupMessage from "../models/GroupMessage.js";
+import Joi from "joi";
+import randomstring from "randomstring";
+import User from "../models/UsersModel.js";
 
 const createGroup = async (req, res, next) => {
   const schema = Joi.object({
@@ -72,7 +72,7 @@ const getGroupByUser = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = {
+export {
   createGroup,
   getGroupByUser,
 };
