@@ -9,7 +9,7 @@ const initialState = {
     access_token: "",
 }
 
-export const userSlice = createSlice({
+export const UserSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
@@ -40,6 +40,6 @@ export const userSlice = createSlice({
     }
 })
 
-export const {updateUser, resetUser} = userSlice.actions
+export const {updateUser, resetUser} = UserSlice.actions
 
 export default UserSlice.reducer

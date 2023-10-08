@@ -12,7 +12,7 @@ connectDatabase();
 app.use(cors());
 
 app.use(express.json());
-app.use("/api/v1/users", UserRouter);
+app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/message", MessageRouter);
 app.use("/api/v1/group", GroupRouter);
 

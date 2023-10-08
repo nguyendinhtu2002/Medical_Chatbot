@@ -1,48 +1,78 @@
 import React, {useEffect, useState} from 'react'
 import logo_blur from "../../dist/assets/img/logo_blur.png"
 import {useDispatch, useSelector} from "react-redux";
-import {userMutationHook} from "../../hooks/UserMutationHook";
+import {useUserMutationHook} from "../../hooks/useUserMutationHook";
 import * as UserService from "../../services/UserService";
+import {useNavigate} from "react-router-dom";
+import Toast from "../../components/LoadingError/Toast";
+import {toast} from "react-toastify";
+import {registerUser} from "../../services/UserService";
 
 function Signup() {
     const history = useNavigate();
-    const dispatch = useDispatch()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [confirmPassword, setConfirmPassword] = useState()
+    const redirect = "/";
+    const dispatch = useDispatch();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isShowPassword, setIsShowPassword] = useState(false);
+    const mutation = useUserMutationHook((data) => UserService.registerUser(data));
+    const userLogin = useSelector((state) => state.user);
 
-    const userLogin = useSelector((state) => state.user)
-    const {email: Email} = userLogin;
+    const {data, error, isLoading, isError, isSuccess} = mutation;
+    const {name: Name} = userLogin;
+    const toastId = React.useRef(null);
+    const Toastobjects = {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    };
 
-    const handleEmail = () => {
-        setEmail(email)
-    }
-    const handlePassword = () => {
-        setPassword(password)
-    }
-
-    const handleConfirmPassword = () => {
-        setConfirmPassword(confirmPassword)
-    }
-
-    const mutation = userMutationHook((data) => UserService.registerUser(data))
-    const {data, error, isLoading, isError, isSuccess} = mutation
     const submitHandler = async (e) => {
-        e.preventDefault()
-        if (email !== "" && password !== "" && confirmPassword !== "" && password === confirmPassword) {
-            mutation.mutate({
-                email,
-                password,
-                confirmPassword
-            })
-        }
-    }
+        e.preventDefault();
+        if (
+            name === "" ||
+            email === "" ||
+            password === "" ||
+            confirmPassword === ""
+        ) {
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.error("Không được bỏ trống!");
+            }
+        } else {
+            if (password !== confirmPassword) {
+                if (!toast.isActive(toastId.current)) {
+                    toastId.current = toast.error("Mật khẩu không giống nhau!");
+                }
+            } else {
+                mutation.mutate({
 
+                    email,
+                    password,
+                });
+            }
+        }
+    };
     useEffect(() => {
         if (!error && isSuccess) {
-            history("/signin")
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.success("Thành công", Toastobjects);
+                history("/login");
+            }
+        } else if (error) {
+            if (!toast.isActive(toastId.current)) {
+                toastId.current = toast.error(
+                    error.response.data.message,
+                    Toastobjects
+                );
+            }
         }
-    })
+    }, [isSuccess, error, name]);
     return (
         <>
             <div className="">
