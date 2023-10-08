@@ -24,7 +24,7 @@ Module Hệ thống ChatBot Y tế với Quản lý Vai trò Người dùng và 
 
 # Setup 
 
-- Tải module tại: https://github.com/register.git.
+- Tải module tại: https://github.com/
 - Đăng nhập vào trang quản trị.
 
 # Mô hình Ngôn ngữ GPT-3.5
