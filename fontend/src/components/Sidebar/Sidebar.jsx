@@ -1,11 +1,35 @@
 import React, {useState} from 'react'
 import logo_blur from "../../dist/assets/img/logo_blur.png";
 import {Link} from "react-router-dom";
+import {resetUser, updateUser} from "../../features/UserSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {useUserMutationHook} from "../../hooks/useUserMutationHook";
+import * as GroupService from "../../services/GroupService";
 
 function Sidebar() {
+    const dispatch = useDispatch()
     const [userBtn, setUserBtn] = useState(false)
     const handleUserBtn = () => {
         setUserBtn(!userBtn)
+    }
+    const userLogin = useSelector((state) => state.user)
+    const {id} = userLogin
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(resetUser());
+        localStorage.removeItem('token');
+        window.location.href = '/signin';
+    }
+    const mutation = useUserMutationHook(async (data) => await GroupService.createThread(data))
+    const {data, error, isLoading, isError, isSuccess} = mutation
+
+    const handleThread = (e) => {
+        e.preventDefault()
+
+        mutation.mutate({
+            user:id,
+            nameGroup: "New Chat",
+        })
     }
     return (
         <>
@@ -52,7 +76,8 @@ function Sidebar() {
 
                 </div>
                 <div className="absolute space-y-2 bottom-0 w-60">
-                    <a href="#"
+                    <a type="button"
+                       onClick={handleThread}
                        className="flex justify-between items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                         <span className="flex whitespace-nowrap">New Chat</span>
                         <span
@@ -76,7 +101,7 @@ function Sidebar() {
                                 <div
                                     className="top-0 -translate-y-12 left-0 space-y-2 absolute z-60 text-white w-60 p-2 rounded-lg bg-gray-700">
                                     <a className="flex hover:bg-gray-500 p-2 rounded">Change Password</a>
-                                    <a className="flex hover:bg-gray-500 p-2 rounded">Logout</a>
+                                    <a className="flex hover:bg-gray-500 p-2 rounded"  onClick = {handleLogout}>Logout</a>
                                 </div>
                             </>
                         }

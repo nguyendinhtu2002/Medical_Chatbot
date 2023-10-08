@@ -4,6 +4,6 @@ import { createMessage, getMessageToGroup } from "../controllers/messageControll
 const router = express.Router();
 
 router.post("/", createMessage);
-router.get("/:groupMessage", getMessageToGroup);
+router.get("/:groupMessage", getMessageToGroup); //thread
 // router.post("/test/:name/:amount/:walletAddress",generateSummary)
 export default  router;
