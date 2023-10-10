@@ -108,7 +108,7 @@ function Sidebar() {
           <a
             type="button"
             onClick={handleThread}
-            className="flex justify-between items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+            className="flex justify-between items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group cursor-pointer"
           >
             <span className="flex whitespace-nowrap">New Chat</span>
             <span className="inline-flex items-center w-7 h-7 p-2 ml-3 text-sm font-medium bg-black rounded-full">
