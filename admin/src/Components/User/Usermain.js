@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import * as UserService from "../../Services/UserService";
 import { error } from "jquery";
 import Users from "./User";
+import {Link} from "react-router-dom";
 const UserMain = () => {
   //   const orderList = useSelector((state) => state.orderList);
   //   const { loading, error, orders } = orderList;
@@ -43,6 +44,11 @@ const UserMain = () => {
     <section className="content-main">
       <div className="content-header">
         <h2 className="content-title">Người dùng</h2>
+        <div>
+          <Link to="/users/add" className="btn btn-primary">
+            Thêm mới
+          </Link>
+        </div>
       </div>
 
       <div className="card mb-4 shadow-sm">

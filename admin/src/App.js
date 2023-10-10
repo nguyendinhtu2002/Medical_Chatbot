@@ -20,6 +20,7 @@ import jwt_decode from "jwt-decode";
 import { isJsonString } from "./utils";
 import ProfessionalScreen from "./Screen/ProfessionalScreen";
 import EditProfessionalScreen from "./Screen/EditProfessionalScreen";
+import AddUserSreen from "./Screen/AddUserScreen";
 
 function App() {
   const userLogin = useSelector((state) => state.user);
@@ -78,10 +79,10 @@ function App() {
           <Route path="/professional" element={<ProfessionalScreen />} />
           <Route path="/professional/:id/edit" element={<EditProfessionalScreen />} />
           <Route path="/users" element={<UserScreen />} />
-          <Route path="/category" element={<CategoryScreen />} />
-
+          <Route path="/users/add" element={<AddUserSreen />} />
           <Route path="/users/:id/edit" element={<EditUserScreen />} />
 
+          <Route path="/category" element={<CategoryScreen />} />
 
 
           <Route path="/message" element={<MessageScreen />} />
