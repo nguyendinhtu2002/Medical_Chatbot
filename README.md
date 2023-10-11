@@ -29,8 +29,8 @@ Module Hệ thống ChatBot Y tế với Quản lý Vai trò Người dùng và 
 
 - Tải module tại: https://github.com/nguyendinhtu2002/Medical_Chatbot.git.
 - Đăng nhập vào trang quản trị.
-- Chọn "Quản lý ứng dụng" trong menu mở rộng.
-- Nhấn nút cài đặt gói ứng dụng và chọn file zip vừa tải về.
+- Chọn "Quản lý" trong menu mở rộng.
+- Nhấn nút cài đặt gói ứng dụng.
 
 # Mô hình Ngôn ngữ GPT-3.5
 
