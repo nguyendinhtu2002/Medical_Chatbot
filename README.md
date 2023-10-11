@@ -15,6 +15,8 @@ Module Hệ thống ChatBot Y tế với Quản lý Vai trò Người dùng và 
 - Chức năng Quản lý Q&A (Quản trị viên)
 - Chức năng Thêm câu hỏi (Chuyên viên)
 - Chức năng Trả lời câu hỏi (Hệ thống Learning Data)
+- Chức năng Duyệt Câu hỏi/ Câu trả lời (Chuyên gia)
+- Chức năng chỉnh sửa câu trả lời ChatBot
 - Chức năng Thống kê thông tin ứng dụng
 
 ## V1.2.00
