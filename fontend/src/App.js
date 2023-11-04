@@ -7,7 +7,7 @@ import ForgotPassword from "./components/RecoverPassword/ForgotPassword";
 import CreateNewPassword from "./components/RecoverPassword/CreateNewPassword";
 import Homepage from "./pages/HomePage/Homepage";
 import PrivateRoutes from "./PrivateRoutes";
-
+import BlogPage from "./pages/BlogPage/BlogPage";
 function App() {
   return (
     <div className="App">
@@ -26,6 +26,9 @@ function App() {
             path={"/create-new-password"}
             element={<CreateNewPassword />}
           ></Route>
+
+          <Route path={"/blog"} element={<BlogPage />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
