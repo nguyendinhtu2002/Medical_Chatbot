@@ -1,0 +1,19 @@
+Changelogs V1.0.00
+- Khởi tạo module ChatBot Y tế 
+
+ Changelogs V1.1.00
+- Chức năng Đăng nhập (Xác thực người dùng), đăng ký (Người dùng)
+- Chức năng Xem blog giới thiệu trang (Khách vãng lai)
+- Chức năng Chat hỏi về y tế (Người dùng)
+- Chức năng Quản lý người dùng (Quản trị viên)
+- Chức năng Quản lý Q&A (Quản trị viên)
+- Chức năng Thêm câu hỏi (Chuyên viên)
+- Chức năng Trả lời câu hỏi (Hệ thống Learning Data)
+- Chức năng Duyệt Câu hỏi/ Câu trả lời (Chuyên gia)
+- Chức năng chỉnh sửa câu trả lời ChatBot
+- Chức năng Thống kê thông tin ứng dụng
+
+Changelogs V1.2.00
+- Chức năng Xác thực tạm thời từ bot chat khác
+- Chức năng Lọc câu hỏi về y tế
+- Chức năng Lưu trữ dữ liệu để huấn luyện mô hình ngôn ngữ
